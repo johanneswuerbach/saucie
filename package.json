@@ -1,0 +1,37 @@
+{
+  "name": "sauce-js-tests-integration",
+  "version": "0.0.1",
+  "description": "A library which allows you to integrate results of your frontend JavaScript tests into a Sauce jobs results page.",
+  "main": "lib/index.js",
+  "author": {
+    "name": "Igor Ribeiro Lima",
+    "email": "lima.igorrribeiro@gmail.com",
+    "website": "http://github.com/igorlima"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/igorlima/sauce-js-tests-integration.git"
+  },
+  "keywords": [
+    "sauce"
+  ],
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "e357039779ecc4f19d0d8081ce8742b6340e0414",
+  "dependencies": {
+    "sauce-connect-launcher": "~0.1.11",
+    "optimist":               "~0.6.0",
+    "wd":                     "~0.0.34",
+    "async":                  "~0.2.9",
+    "q":                      "~0.9.6",
+    "request":                "~2.25.0",
+    "js-yaml":                "~2.1.0",
+    "clone":                  "~0.1.9"
+  }
+}
