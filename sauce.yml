@@ -1,0 +1,33 @@
+connect: true
+parallelLimit: 3
+localhost: http://localhost:8080
+tunnelIdentifier: dev-tunel
+
+launcher:
+  verbose: true
+  logfile: 'sauce-example.log'
+  logger: console.log
+  no_progress: false
+
+desired:
+  tags:
+    - sauce integration
+    - test
+  name: tests
+  public: public
+  build: dev-build
+  record-video: true
+
+browsers:
+  WinXP_Opera:
+    browserName: "opera"
+    version: "12"
+    platform: "Windows XP"
+  Win7_IE_9:
+    browserName: "internet explorer"
+    version: "9"
+    platform: "Windows 7"
+  iPhone:
+    browserName: "iphone"
+    version: "6"
+    platform: "OS X 10.8"
