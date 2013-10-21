@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "A library which allows you to integrate results of your frontend JavaScript tests into a Sauce jobs results page.",
   "main": "lib/index.js",
+  "bin": {
+    "saucer": "lib/index.js"
+  },
   "author": {
     "name": "Igor Ribeiro Lima",
     "email": "lima.igorrribeiro@gmail.com",
