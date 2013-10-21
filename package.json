@@ -8,9 +8,6 @@
     "email": "lima.igorrribeiro@gmail.com",
     "website": "http://github.com/igorlima"
   },
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
