@@ -4,7 +4,7 @@
   "description": "A library which allows you to integrate results of your frontend JavaScript tests into a Sauce jobs results page.",
   "main": "lib/index.js",
   "bin": {
-    "saucer": "lib/index.js"
+    "saucer": "lib/saucelauncher-webdriver.js"
   },
   "author": {
     "name": "Igor Ribeiro Lima",
@@ -23,7 +23,6 @@
   ],
   "license": "MIT",
   "readmeFilename": "README.md",
-  "gitHead": "e357039779ecc4f19d0d8081ce8742b6340e0414",
   "dependencies": {
     "sauce-connect-launcher": "~0.2.2",
     "optimist":               "~0.6.0",
