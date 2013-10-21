@@ -19,7 +19,7 @@
     "url": "git://github.com/igorlima/sauce-js-tests-integration.git"
   },
   "keywords": [
-    "sauce"
+    "saucelabs", "continuous integration", "js tests", "JavaScript tests"
   ],
   "license": "MIT",
   "readmeFilename": "README.md",
