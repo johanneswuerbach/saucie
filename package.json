@@ -25,13 +25,11 @@
   "readmeFilename": "README.md",
   "gitHead": "e357039779ecc4f19d0d8081ce8742b6340e0414",
   "dependencies": {
-    "sauce-connect-launcher": "~0.1.11",
+    "sauce-connect-launcher": "~0.2.2",
     "optimist":               "~0.6.0",
-    "wd":                     "~0.0.34",
+    "wd":                     "~0.2.0",
     "async":                  "~0.2.9",
-    "q":                      "~0.9.6",
-    "request":                "~2.25.0",
-    "js-yaml":                "~2.1.0",
-    "clone":                  "~0.1.9"
+    "q":                      "~0.9.7",
+    "request":                "~2.27.0"
   }
 }
