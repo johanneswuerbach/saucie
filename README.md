@@ -1,9 +1,10 @@
 sauce-js-tests-integration
 ==========================
 
-This library allows you to integrate results of your frontend JavaScript tests into a [Sauce jobs results page](https://saucelabs.com/docs/javascript-unit-tests-integration).
+This library allows you to integrate your javascript test results into a [Sauce jobs results page](https://saucelabs.com/docs/javascript-unit-tests-integration).
 
-Run your tests on various browsers hosted on SauceLabs!
+It's available for running QUnit, Jasmine and Mocha tests through various browsers hosted on SauceLabs.
+
 
 Instructions
 ------------
