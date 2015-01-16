@@ -12,7 +12,7 @@
     "website": "http://github.com/igorlima"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -34,5 +34,9 @@
     "request": "^2.51.0",
     "sauce-connect-launcher": "^0.9.3",
     "wd": "^0.3.11"
+  },
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0"
   }
 }
