@@ -24,4 +24,13 @@ describe('QUnit - Integration', function() {
       });
     });
   });
+
+  it('fails when specifing a small timeout', function(done) {
+    serveQUnit(function(port) {
+      launcher({url: 'http://localhost:' + port, timeout: 1}, function(err, result) {
+        expect(err).to.be.instanceof(Error);
+        done();
+      });
+    });
+  });
 });
