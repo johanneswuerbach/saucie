@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>QUnit Example</title>
+  <link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.16.0.css">
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="//code.jquery.com/qunit/qunit-1.16.0.js"></script>
+  <script src="/qunit-reporter.js"></script>
+  <script>
+  var global_test_results = null;
+  QUnit.done(function (test_results) {
+    global_test_results = test_results;
+  });
+
+  QUnit.test('hello test', function(assert ) {
+    assert.ok( 1 == '1', 'Passed!');
+  });
+
+  QUnit.test('test reporter', function(assert) {
+    assert.ok(JSTestingReporterSL, 'Reporter is loaded');
+    assert.equal(JSTestingReporterSL(), null, 'Does not return a result when tests are running');
+  });
+
+  QUnit.test('assert.async() test', function(assert) {
+    var done = assert.async();
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+      if (request.readyState == 4) {
+        assert.ok(200 == request.status);
+        done();
+      }
+    };
+    request.open('GET', '/slow', true);
+    request.send();
+  });
+  </script>
+</body>
+</html>
