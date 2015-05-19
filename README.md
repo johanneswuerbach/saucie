@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/igorlima/saucie.png)](https://travis-ci.org/igorlima/saucie)
-
-sauce-js-tests-integration
+sauce-js-tests-integration [![Build Status](https://travis-ci.org/johanneswuerbach/saucie.svg?branch=master)](https://travis-ci.org/johanneswuerbach/saucie) [![Dependency Status](https://david-dm.org/johanneswuerbach/saucie.svg)](https://david-dm.org/johanneswuerbach/saucie) [![npm version](https://badge.fury.io/js/saucie.svg)](http://badge.fury.io/js/saucie)
 ==========================
 
 This library allows you to integrate your javascript test results into a [Sauce jobs results page](https://saucelabs.com/docs/javascript-unit-tests-integration).
