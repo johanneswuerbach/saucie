@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/igorlima/saucie.png)](https://travis-ci.org/igorlima/saucie)
+
 sauce-js-tests-integration
 ==========================
 
