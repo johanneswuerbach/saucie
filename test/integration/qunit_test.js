@@ -1,6 +1,9 @@
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
+var chai = require('chai');
+
+chai.use(require('dirty-chai'));
 var expect = require('chai').expect;
 
 var launcher = require('../../lib/saucelauncher-webdriver');
