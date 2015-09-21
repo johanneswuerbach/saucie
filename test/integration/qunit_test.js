@@ -61,6 +61,7 @@ describe('QUnit - Integration', function() {
   it('fails when specifing a small timeout', function(done) {
     launcher({url: url, timeout: 1}, function(err) {
       expect(err).to.be.instanceof(Error);
+      expect(err.message).to.eq('Timeout: Element not there');
       done();
     });
   });
