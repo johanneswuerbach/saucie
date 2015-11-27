@@ -3,7 +3,7 @@ var chai = require('chai');
 chai.use(require('dirty-chai'));
 var expect = require('chai').expect;
 
-var launcher = require('../../lib/saucelauncher-webdriver');
+var launcher = require('../../lib/index');
 var connect = launcher.connect;
 var disconnect = launcher.disconnect;
 var serveQUnit = require('../utils').serveQUnit;
@@ -58,11 +58,10 @@ describe('QUnit - Integration', function() {
     });
   });
 
-  it('fails when specifing a small timeout', function(done) {
-    launcher({url: url, timeout: 1}, function(err) {
+  it('fails when specifing a small timeout', function() {
+    return launcher({url: url, timeout: 1}).catch(function (err) {
       expect(err).to.be.instanceof(Error);
       expect(err.message).to.eq('Timeout: Element not there');
-      done();
     });
   });
 });
