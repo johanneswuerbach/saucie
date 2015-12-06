@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/igorlima/sauce-js-tests-integration.git"
+    "url": "https://github.com/johanneswuerbach/saucie.git"
   },
   "keywords": [
     "saucelabs",
@@ -27,7 +27,6 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "async": "^1.4.2",
     "bluebird": "^3.0.5",
     "extend": "^3.0.0",
     "optimist": "^0.6.0",
