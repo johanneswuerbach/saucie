@@ -30,7 +30,7 @@
     "bluebird": "^3.1.1",
     "extend": "^3.0.0",
     "optimist": "^0.6.0",
-    "request": "^2.51.0",
+    "request": "^2.76.0",
     "sauce-connect-launcher": "^0.15.1",
     "wd": "^1.0.0"
   },
