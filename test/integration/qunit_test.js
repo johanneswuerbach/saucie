@@ -9,7 +9,7 @@ var disconnect = launcher.disconnect;
 var serveQUnit = require('../utils').serveQUnit;
 
 describe('QUnit - Integration', function() {
-  this.timeout(120000);
+  this.timeout(300000);
 
   var url;
 
@@ -21,7 +21,7 @@ describe('QUnit - Integration', function() {
   });
 
   it('runs qunit tests and reports the result', function(done) {
-    launcher({url: url}, function(err, result) {
+    launcher({url: url, connectRetries: 2}, function(err, result) {
       if (err) {
         return done(err);
       }
@@ -43,7 +43,8 @@ describe('QUnit - Integration', function() {
       pidfile: pidFile,
       logger: console.log,
       verbose: true,
-      tunnelIdentifier: 'Manual-' + process.env.TRAVIS_JOB_NUMBER
+      tunnelIdentifier: 'Manual-' + process.env.TRAVIS_JOB_NUMBER,
+      connectRetries: 2
     }).then(function () {
       return launcher({
         url: url,
@@ -59,7 +60,7 @@ describe('QUnit - Integration', function() {
   });
 
   it('fails when specifing a small timeout', function() {
-    return launcher({url: url, timeout: 1}).catch(function (err) {
+    return launcher({url: url, timeout: 1, connectRetries: 2}).catch(function (err) {
       expect(err).to.be.instanceof(Error);
       expect(err.message).to.eq('Timeout: Element not there');
     });
