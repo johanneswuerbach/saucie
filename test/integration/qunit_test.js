@@ -9,7 +9,7 @@ var disconnect = launcher.disconnect;
 var serveQUnit = require('../utils').serveQUnit;
 
 describe('QUnit - Integration', function() {
-  this.timeout(120000);
+  this.timeout(300000);
 
   var url;
 
