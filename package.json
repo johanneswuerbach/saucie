@@ -1,6 +1,6 @@
 {
   "name": "saucie",
-  "version": "1.4.1",
+  "version": "2.0.0",
   "description": "A library which allows you to integrate results of your frontend JavaScript tests into a Sauce jobs results page.",
   "main": "lib/index.js",
   "bin": {
