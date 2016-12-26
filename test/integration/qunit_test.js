@@ -37,6 +37,53 @@ describe('QUnit - Integration', function() {
     });
   });
 
+  it('supports desktop browsers (selenium)', function(done) {
+    launcher({
+      url: url,
+      connectRetries: 2,
+      platformNameSL: 'Windows',
+      platformVersionSL: '10'
+    }, function(err, result) {
+      if (err) {
+        return done(err);
+      }
+
+      expect(result).to.have.deep.property('body.passed', true, 'Marked tests as passed');
+      expect(result).to.have.deep.property('body.custom-data.qunit');
+
+      var qunitResult = result.body['custom-data'].qunit;
+      expect(qunitResult.failed).to.eq(0);
+      expect(qunitResult.passed).to.eq(4);
+      expect(qunitResult.total).to.eq(4);
+      done();
+    });
+  });
+
+  it('supports mobile browsers (appium)', function(done) {
+    launcher({
+      rl: url,
+      connectRetries: 2,
+      browserNameSL: 'Browser',
+      deviceNameSL: 'Android Emulator',
+      deviceOrientationSL: 'portrait',
+      platformNameSL: 'Android',
+      platformVersionSL: '5.1'
+    }, function(err, result) {
+      if (err) {
+        return done(err);
+      }
+
+      expect(result).to.have.deep.property('body.passed', true, 'Marked tests as passed');
+      expect(result).to.have.deep.property('body.custom-data.qunit');
+
+      var qunitResult = result.body['custom-data'].qunit;
+      expect(qunitResult.failed).to.eq(0);
+      expect(qunitResult.passed).to.eq(4);
+      expect(qunitResult.total).to.eq(4);
+      done();
+    });
+  });
+
   it('works when controlling the tunnel manually', function() {
     var pidFile = 'sc.pid';
     return connect({
