@@ -8,16 +8,27 @@ var connect = launcher.connect;
 var disconnect = launcher.disconnect;
 var serveQUnit = require('../utils').serveQUnit;
 
+var PORT = 7000;
+var url = 'http://localhost:' + PORT;
+
 describe('QUnit - Integration', function() {
   this.timeout(300000);
 
-  var url;
+  var server;
 
   beforeEach(function (done) {
-    serveQUnit(function(port) {
-      url = 'http://localhost:' + port;
+    serveQUnit(PORT, function(err, _server) {
+      if (err) {
+        return done(err);
+      }
+
+      server = _server;
       done();
     });
+  });
+
+  afterEach(function (done) {
+    server.close(done);
   });
 
   it('runs qunit tests and reports the result', function(done) {
