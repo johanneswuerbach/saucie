@@ -72,7 +72,7 @@ describe('QUnit - Integration', function() {
 
   it('supports mobile browsers (appium)', function(done) {
     launcher({
-      rl: url,
+      url: url,
       connectRetries: 2,
       browserNameSL: 'Browser',
       deviceNameSL: 'Android Emulator',
