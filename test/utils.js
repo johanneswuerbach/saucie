@@ -2,7 +2,7 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 
-module.exports.serveQUnit = function(callback) {
+module.exports.serveQUnit = function(port, callback) {
   var server = http.createServer(function (request, response) {
     switch (request.url) {
       case '/':
@@ -25,9 +25,11 @@ module.exports.serveQUnit = function(callback) {
       }
   });
 
-  // grab a random port.
-  server.listen(function() {
-    var address = server.address();
-    callback(address.port);
+  server.on('error', function(err) {
+    callback(err);
+  });
+
+  server.listen(port, function() {
+    callback(null, server);
   });
 };

@@ -1,4 +1,5 @@
 var chai = require('chai');
+var Bluebird = require('bluebird');
 
 chai.use(require('dirty-chai'));
 var expect = require('chai').expect;
@@ -8,16 +9,27 @@ var connect = launcher.connect;
 var disconnect = launcher.disconnect;
 var serveQUnit = require('../utils').serveQUnit;
 
+var PORT = 7000;
+var url = 'http://localhost:' + PORT;
+
 describe('QUnit - Integration', function() {
   this.timeout(300000);
 
-  var url;
+  var server;
 
   beforeEach(function (done) {
-    serveQUnit(function(port) {
-      url = 'http://localhost:' + port;
+    serveQUnit(PORT, function(err, _server) {
+      if (err) {
+        return done(err);
+      }
+
+      server = _server;
       done();
     });
+  });
+
+  afterEach(function (done) {
+    server.close(done);
   });
 
   it('runs qunit tests and reports the result', function(done) {
@@ -61,7 +73,7 @@ describe('QUnit - Integration', function() {
 
   it('supports mobile browsers (appium)', function(done) {
     launcher({
-      rl: url,
+      url: url,
       connectRetries: 2,
       browserNameSL: 'Browser',
       deviceNameSL: 'Android Emulator',
@@ -86,23 +98,26 @@ describe('QUnit - Integration', function() {
 
   it('works when controlling the tunnel manually', function() {
     var pidFile = 'sc.pid';
-    return connect({
-      pidfile: pidFile,
-      logger: console.log,
-      verbose: true,
-      tunnelIdentifier: 'Manual-' + process.env.TRAVIS_JOB_NUMBER,
-      connectRetries: 2
-    }).then(function () {
+
+    return Bluebird.using(function () {
+      return connect({
+        pidfile: pidFile,
+        logger: console.log,
+        verbose: true,
+        tunnelIdentifier: 'Manual-' + process.env.TRAVIS_JOB_NUMBER,
+        connectRetries: 2
+      }).disposer(function() {
+        return disconnect(pidFile);
+      });
+    }(), function () {
       return launcher({
         url: url,
         connect: false,
         tunnelIdentifierSL: 'Manual-' + process.env.TRAVIS_JOB_NUMBER
+      }).then(function (result) {
+        expect(result).to.have.deep.property('body.passed', true, 'Marked tests as passed');
+        expect(result).to.have.deep.property('body.custom-data.qunit');
       });
-    }).then(function (result) {
-      expect(result).to.have.deep.property('body.passed', true, 'Marked tests as passed');
-      expect(result).to.have.deep.property('body.custom-data.qunit');
-
-      return disconnect(pidFile);
     });
   });
 
