@@ -27,7 +27,7 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "bluebird": "^3.1.1",
+    "bluebird": "^3.4.6",
     "extend": "^3.0.0",
     "optimist": "^0.6.0",
     "request": "^2.51.0",
