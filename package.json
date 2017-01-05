@@ -2,30 +2,29 @@
   "name": "saucie",
   "version": "2.1.1",
   "description": "A library which allows you to integrate results of your frontend JavaScript tests into a Sauce jobs results page.",
-  "main": "lib/index.js",
-  "bin": {
-    "saucie": "lib/bin.js"
-  },
+  "keywords": [
+    "JavaScript tests",
+    "continuous integration",
+    "js tests",
+    "saucelabs"
+  ],
+  "license": "MIT",
   "author": {
     "name": "Igor Ribeiro Lima",
     "email": "lima.igorrribeiro@gmail.com",
     "website": "http://github.com/igorlima"
   },
-  "scripts": {
-    "test": "mocha"
+  "main": "lib/index.js",
+  "bin": {
+    "saucie": "lib/bin.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/johanneswuerbach/saucie.git"
   },
-  "keywords": [
-    "saucelabs",
-    "continuous integration",
-    "js tests",
-    "JavaScript tests"
-  ],
-  "license": "MIT",
-  "readmeFilename": "README.md",
+  "scripts": {
+    "test": "mocha"
+  },
   "dependencies": {
     "bluebird": "^3.1.1",
     "extend": "^3.0.0",
@@ -38,5 +37,6 @@
     "chai": "^3.2.0",
     "dirty-chai": "^1.2.2",
     "mocha": "^3.0.0"
-  }
+  },
+  "readmeFilename": "README.md"
 }
