@@ -102,9 +102,9 @@ describe('parseArgv()', function() {
   });
 
   describe('tags', function() {
-    it('defaults to []', function() {
+    it('defaults to ["Saucie", "test"]', function() {
       var result = _parseArgv([]);
-      expect(result.tags).to.deep.equal([]);
+      expect(result.tags).to.deep.equal(['Saucie', 'test']);
     });
 
     it('can use custom tags', function() {
