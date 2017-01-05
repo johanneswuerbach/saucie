@@ -9,124 +9,124 @@ function _parseArgv(args) {
 }
 
 describe('parseArgv()', function() {
-  describe('browserNameSL', function() {
+  describe('browser', function() {
     it('defaults to "chrome"', function() {
       var result = _parseArgv([]);
-      expect(result.browserNameSL).to.equal('chrome');
+      expect(result.browser).to.equal('chrome');
     });
 
     it('can be set to "foobar"', function() {
-      var result = _parseArgv(['--browserNameSL', 'foobar']);
-      expect(result.browserNameSL).to.equal('foobar');
+      var result = _parseArgv(['--browser', 'foobar']);
+      expect(result.browser).to.equal('foobar');
     });
 
     it('can be set to "foobar" via alias', function() {
       var result = _parseArgv(['-b', 'foobar']);
-      expect(result.browserNameSL).to.equal('foobar');
+      expect(result.browser).to.equal('foobar');
     });
   });
 
-  describe('versionSL', function() {
+  describe('version', function() {
     it('defaults to ""', function() {
       var result = _parseArgv([]);
-      expect(result.versionSL).to.equal('');
+      expect(result.version).to.equal('');
     });
 
     it('can be set to "4.2"', function() {
-      var result = _parseArgv(['--versionSL', '4.2']);
-      expect(result.versionSL).to.equal('4.2');
+      var result = _parseArgv(['--version', '4.2']);
+      expect(result.version).to.equal('4.2');
     });
 
     it('can be set to "4.2" via alias', function() {
       var result = _parseArgv(['-v', '4.2']);
-      expect(result.versionSL).to.equal('4.2');
+      expect(result.version).to.equal('4.2');
     });
   });
 
-  describe('platformNameSL', function() {
+  describe('platform', function() {
     it('defaults to ""', function() {
       var result = _parseArgv([]);
-      expect(result.platformNameSL).to.equal('');
+      expect(result.platform).to.equal('');
     });
 
     it('can be set to "foobar"', function() {
-      var result = _parseArgv(['--platformNameSL', 'foobar']);
-      expect(result.platformNameSL).to.equal('foobar');
+      var result = _parseArgv(['--platform', 'foobar']);
+      expect(result.platform).to.equal('foobar');
     });
 
     it('can be set to "foobar" via alias', function() {
       var result = _parseArgv(['-p', 'foobar']);
-      expect(result.platformNameSL).to.equal('foobar');
+      expect(result.platform).to.equal('foobar');
     });
   });
 
-  describe('platformVersionSL', function() {
+  describe('platformVersion', function() {
     it('defaults to ""', function() {
       var result = _parseArgv([]);
-      expect(result.platformVersionSL).to.equal('');
+      expect(result.platformVersion).to.equal('');
     });
 
     it('can be set to "4.2"', function() {
-      var result = _parseArgv(['--platformVersionSL', '4.2']);
-      expect(result.platformVersionSL).to.equal('4.2');
+      var result = _parseArgv(['--platform-version', '4.2']);
+      expect(result.platformVersion).to.equal('4.2');
     });
   });
 
-  describe('tunnelIdentifierSL', function() {
+  describe('tunnelIdentifier', function() {
     it('defaults to $TRAVIS_JOB_NUMBER', function() {
       var result = _parseArgv([]);
-      expect(result.tunnelIdentifierSL).to.equal(process.env.TRAVIS_JOB_NUMBER);
+      expect(result.tunnelIdentifier).to.equal(process.env.TRAVIS_JOB_NUMBER);
     });
 
     it('can be set to "foobar"', function() {
-      var result = _parseArgv(['--tunnelIdentifierSL', 'foobar']);
-      expect(result.tunnelIdentifierSL).to.equal('foobar');
+      var result = _parseArgv(['--tunnel-identifier', 'foobar']);
+      expect(result.tunnelIdentifier).to.equal('foobar');
     });
 
     it('can be set to "foobar" via alias', function() {
       var result = _parseArgv(['-t', 'foobar']);
-      expect(result.tunnelIdentifierSL).to.equal('foobar');
+      expect(result.tunnelIdentifier).to.equal('foobar');
     });
   });
 
-  describe('buildSL', function() {
+  describe('build', function() {
     it('defaults to $TRAVIS_BUILD_NUMBER', function() {
       var result = _parseArgv([]);
-      expect(result.buildSL).to.equal(process.env.TRAVIS_BUILD_NUMBER);
+      expect(result.build).to.equal(process.env.TRAVIS_BUILD_NUMBER);
     });
 
     it('can be set to "foobar"', function() {
-      var result = _parseArgv(['--buildSL', 'foobar']);
-      expect(result.buildSL).to.equal('foobar');
+      var result = _parseArgv(['--build', 'foobar']);
+      expect(result.build).to.equal('foobar');
     });
   });
 
-  describe('tagsSL', function() {
+  describe('tags', function() {
     it('defaults to []', function() {
       var result = _parseArgv([]);
-      expect(result.tagsSL).to.deep.equal([]);
+      expect(result.tags).to.deep.equal([]);
     });
 
     it('can use custom tags', function() {
-      var result = _parseArgv(['--tagsSL', 'foo', '--tagsSL', 'bar']);
-      expect(result.tagsSL).to.deep.equal(['foo', 'bar']);
+      var result = _parseArgv(['--tag', 'foo', '--tag', 'bar']);
+      expect(result.tags).to.deep.equal(['foo', 'bar']);
     });
   });
 
-  describe('sessionNameSL', function() {
+  describe('sessionName', function() {
     it('defaults to "Saucie tests"', function() {
       var result = _parseArgv([]);
-      expect(result.sessionNameSL).to.equal('Saucie tests');
+      expect(result.sessionName).to.equal('Saucie tests');
     });
 
     it('can be set to "foobar"', function() {
-      var result = _parseArgv(['--sessionNameSL', 'foobar']);
-      expect(result.sessionNameSL).to.equal('foobar');
+      var result = _parseArgv(['--session-name', 'foobar']);
+      expect(result.sessionName).to.equal('foobar');
     });
 
     it('can be set to "foobar" via alias', function() {
       var result = _parseArgv(['-n', 'foobar']);
-      expect(result.sessionNameSL).to.equal('foobar');
+      expect(result.sessionName).to.equal('foobar');
     });
   });
 
@@ -149,7 +149,12 @@ describe('parseArgv()', function() {
     });
 
     it('can be set to 42', function() {
-      var result = _parseArgv(['--connectRetries', '42']);
+      var result = _parseArgv(['--connect-retries', '42']);
+      expect(result.connectRetries).to.equal(42);
+    });
+
+    it('can be set to 42 via alias', function() {
+      var result = _parseArgv(['-r', '42']);
       expect(result.connectRetries).to.equal(42);
     });
   });
