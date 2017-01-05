@@ -14,6 +14,7 @@ var url = 'http://localhost:' + PORT;
 
 describe('QUnit - Integration', function() {
   this.timeout(300000);
+  this.retries(2);
 
   var server;
 
