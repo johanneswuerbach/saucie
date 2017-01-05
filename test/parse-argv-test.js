@@ -37,8 +37,7 @@ describe('parseArgv()', function() {
       expect(result.versionSL).to.equal('4.2');
     });
 
-    // this is currently broken
-    it.skip('can be set to "4.2" via alias', function() {
+    it('can be set to "4.2" via alias', function() {
       var result = _parseArgv(['-v', '4.2']);
       expect(result.versionSL).to.equal('4.2');
     });
@@ -71,12 +70,6 @@ describe('parseArgv()', function() {
       var result = _parseArgv(['--platformVersionSL', '4.2']);
       expect(result.platformVersionSL).to.equal('4.2');
     });
-
-    // this is currently broken
-    it.skip('can be set to "4.2" via alias', function() {
-      var result = _parseArgv(['--pv', '4.2']);
-      expect(result.platformVersionSL).to.equal('4.2');
-    });
   });
 
   describe('tunnelIdentifierSL', function() {
@@ -106,28 +99,17 @@ describe('parseArgv()', function() {
       var result = _parseArgv(['--buildSL', 'foobar']);
       expect(result.buildSL).to.equal('foobar');
     });
-
-    it('can be set to "foobar" via alias', function() {
-      var result = _parseArgv(['--build', 'foobar']);
-      expect(result.buildSL).to.equal('foobar');
-    });
   });
 
-  // this is currently broken
-  describe.skip('tagsSL', function() {
-    it('defaults to ["Saucie", "test"]', function() {
+  describe('tagsSL', function() {
+    it('defaults to []', function() {
       var result = _parseArgv([]);
-      expect(result.tagsSL).to.deep.equal(['Saucie', 'test']);
+      expect(result.tagsSL).to.deep.equal([]);
     });
 
     it('can use custom tags', function() {
-      var result = _parseArgv(['--tagsSL', 'foo']);
-      expect(result.tagsSL).to.deep.equal(['foo']);
-    });
-
-    it('can use custom tags via alias', function() {
-      var result = _parseArgv(['--tg', 'foo']);
-      expect(result.tagsSL).to.deep.equal(['foo']);
+      var result = _parseArgv(['--tagsSL', 'foo', '--tagsSL', 'bar']);
+      expect(result.tagsSL).to.deep.equal(['foo', 'bar']);
     });
   });
 
@@ -154,23 +136,8 @@ describe('parseArgv()', function() {
       expect(result.connect).to.equal(true);
     });
 
-    it('can be explicitly set to true', function() {
-      var result = _parseArgv(['--connect']);
-      expect(result.connect).to.equal(true);
-    });
-
-    it('can be explicitly set to true via alias', function() {
-      var result = _parseArgv(['--ct']);
-      expect(result.connect).to.equal(true);
-    });
-
     it('can be set to false', function() {
       var result = _parseArgv(['--no-connect']);
-      expect(result.connect).to.equal(false);
-    });
-
-    it('can be set to false via alias', function() {
-      var result = _parseArgv(['--no-ct']);
       expect(result.connect).to.equal(false);
     });
   });
@@ -188,52 +155,14 @@ describe('parseArgv()', function() {
   });
 
   describe('attach', function() {
-    it('defaults to false', function() {
+    it('defaults to undefined', function() {
       var result = _parseArgv([]);
-      expect(result.attach).to.equal(false);
+      expect(result.attach).to.equal(undefined);
     });
 
     it('can be set to true', function() {
       var result = _parseArgv(['--attach']);
       expect(result.attach).to.equal(true);
     });
-
-    it('can be set to true via alias', function() {
-      var result = _parseArgv(['--at']);
-      expect(result.attach).to.equal(true);
-    });
-
-    it('can be explicitly set to false', function() {
-      var result = _parseArgv(['--no-attach']);
-      expect(result.attach).to.equal(false);
-    });
-
-    it('can be explicitly set to false via alias', function() {
-      var result = _parseArgv(['--no-at']);
-      expect(result.attach).to.equal(false);
-    });
   });
 });
-
-function mockEnv(key, value, cb) {
-  var hasOldValue, oldValue;
-  try {
-    hasOldValue = key in process.env;
-    oldValue = process.env[key];
-
-    if (value !== undefined) {
-      process.env[key] = value;
-    } else {
-      delete process.env[key];
-    }
-
-    cb();
-
-  } finally {
-    if (hasOldValue) {
-      process.env[key] = oldValue;
-    } else {
-      delete process.env[key];
-    }
-  }
-}
