@@ -9,142 +9,124 @@ function _parseArgv(args) {
 }
 
 describe('parseArgv()', function() {
-  describe('browserNameSL', function() {
+  describe('browser', function() {
     it('defaults to "chrome"', function() {
       var result = _parseArgv([]);
-      expect(result.browserNameSL).to.equal('chrome');
+      expect(result.browser).to.equal('chrome');
     });
 
     it('can be set to "foobar"', function() {
-      var result = _parseArgv(['--browserNameSL', 'foobar']);
-      expect(result.browserNameSL).to.equal('foobar');
+      var result = _parseArgv(['--browser', 'foobar']);
+      expect(result.browser).to.equal('foobar');
     });
 
     it('can be set to "foobar" via alias', function() {
       var result = _parseArgv(['-b', 'foobar']);
-      expect(result.browserNameSL).to.equal('foobar');
+      expect(result.browser).to.equal('foobar');
     });
   });
 
-  describe('versionSL', function() {
+  describe('version', function() {
     it('defaults to ""', function() {
       var result = _parseArgv([]);
-      expect(result.versionSL).to.equal('');
+      expect(result.version).to.equal('');
     });
 
     it('can be set to "4.2"', function() {
-      var result = _parseArgv(['--versionSL', '4.2']);
-      expect(result.versionSL).to.equal('4.2');
+      var result = _parseArgv(['--version', '4.2']);
+      expect(result.version).to.equal('4.2');
     });
 
-    // this is currently broken
-    it.skip('can be set to "4.2" via alias', function() {
+    it('can be set to "4.2" via alias', function() {
       var result = _parseArgv(['-v', '4.2']);
-      expect(result.versionSL).to.equal('4.2');
+      expect(result.version).to.equal('4.2');
     });
   });
 
-  describe('platformNameSL', function() {
+  describe('platform', function() {
     it('defaults to ""', function() {
       var result = _parseArgv([]);
-      expect(result.platformNameSL).to.equal('');
+      expect(result.platform).to.equal('');
     });
 
     it('can be set to "foobar"', function() {
-      var result = _parseArgv(['--platformNameSL', 'foobar']);
-      expect(result.platformNameSL).to.equal('foobar');
+      var result = _parseArgv(['--platform', 'foobar']);
+      expect(result.platform).to.equal('foobar');
     });
 
     it('can be set to "foobar" via alias', function() {
       var result = _parseArgv(['-p', 'foobar']);
-      expect(result.platformNameSL).to.equal('foobar');
+      expect(result.platform).to.equal('foobar');
     });
   });
 
-  describe('platformVersionSL', function() {
+  describe('platformVersion', function() {
     it('defaults to ""', function() {
       var result = _parseArgv([]);
-      expect(result.platformVersionSL).to.equal('');
+      expect(result.platformVersion).to.equal('');
     });
 
     it('can be set to "4.2"', function() {
-      var result = _parseArgv(['--platformVersionSL', '4.2']);
-      expect(result.platformVersionSL).to.equal('4.2');
-    });
-
-    // this is currently broken
-    it.skip('can be set to "4.2" via alias', function() {
-      var result = _parseArgv(['--pv', '4.2']);
-      expect(result.platformVersionSL).to.equal('4.2');
+      var result = _parseArgv(['--platform-version', '4.2']);
+      expect(result.platformVersion).to.equal('4.2');
     });
   });
 
-  describe('tunnelIdentifierSL', function() {
+  describe('tunnelIdentifier', function() {
     it('defaults to $TRAVIS_JOB_NUMBER', function() {
       var result = _parseArgv([]);
-      expect(result.tunnelIdentifierSL).to.equal(process.env.TRAVIS_JOB_NUMBER);
+      expect(result.tunnelIdentifier).to.equal(process.env.TRAVIS_JOB_NUMBER);
     });
 
     it('can be set to "foobar"', function() {
-      var result = _parseArgv(['--tunnelIdentifierSL', 'foobar']);
-      expect(result.tunnelIdentifierSL).to.equal('foobar');
+      var result = _parseArgv(['--tunnel-identifier', 'foobar']);
+      expect(result.tunnelIdentifier).to.equal('foobar');
     });
 
     it('can be set to "foobar" via alias', function() {
       var result = _parseArgv(['-t', 'foobar']);
-      expect(result.tunnelIdentifierSL).to.equal('foobar');
+      expect(result.tunnelIdentifier).to.equal('foobar');
     });
   });
 
-  describe('buildSL', function() {
+  describe('build', function() {
     it('defaults to $TRAVIS_BUILD_NUMBER', function() {
       var result = _parseArgv([]);
-      expect(result.buildSL).to.equal(process.env.TRAVIS_BUILD_NUMBER);
+      expect(result.build).to.equal(process.env.TRAVIS_BUILD_NUMBER);
     });
 
     it('can be set to "foobar"', function() {
-      var result = _parseArgv(['--buildSL', 'foobar']);
-      expect(result.buildSL).to.equal('foobar');
-    });
-
-    it('can be set to "foobar" via alias', function() {
       var result = _parseArgv(['--build', 'foobar']);
-      expect(result.buildSL).to.equal('foobar');
+      expect(result.build).to.equal('foobar');
     });
   });
 
-  // this is currently broken
-  describe.skip('tagsSL', function() {
+  describe('tags', function() {
     it('defaults to ["Saucie", "test"]', function() {
       var result = _parseArgv([]);
-      expect(result.tagsSL).to.deep.equal(['Saucie', 'test']);
+      expect(result.tags).to.deep.equal(['Saucie', 'test']);
     });
 
     it('can use custom tags', function() {
-      var result = _parseArgv(['--tagsSL', 'foo']);
-      expect(result.tagsSL).to.deep.equal(['foo']);
-    });
-
-    it('can use custom tags via alias', function() {
-      var result = _parseArgv(['--tg', 'foo']);
-      expect(result.tagsSL).to.deep.equal(['foo']);
+      var result = _parseArgv(['--tag', 'foo', '--tag', 'bar']);
+      expect(result.tags).to.deep.equal(['foo', 'bar']);
     });
   });
 
-  describe('sessionNameSL', function() {
+  describe('sessionName', function() {
     it('defaults to "Saucie tests"', function() {
       var result = _parseArgv([]);
-      expect(result.sessionNameSL).to.equal('Saucie tests');
+      expect(result.sessionName).to.equal('Saucie tests');
     });
 
     it('can be set to "foobar"', function() {
-      var result = _parseArgv(['--sessionNameSL', 'foobar']);
-      expect(result.sessionNameSL).to.equal('foobar');
+      var result = _parseArgv(['--session-name', 'foobar']);
+      expect(result.sessionName).to.equal('foobar');
     });
 
     it('can be set to "foobar" via alias', function() {
       var result = _parseArgv(['-n', 'foobar']);
-      expect(result.sessionNameSL).to.equal('foobar');
+      expect(result.sessionName).to.equal('foobar');
     });
   });
 
@@ -154,23 +136,8 @@ describe('parseArgv()', function() {
       expect(result.connect).to.equal(true);
     });
 
-    it('can be explicitly set to true', function() {
-      var result = _parseArgv(['--connect']);
-      expect(result.connect).to.equal(true);
-    });
-
-    it('can be explicitly set to true via alias', function() {
-      var result = _parseArgv(['--ct']);
-      expect(result.connect).to.equal(true);
-    });
-
     it('can be set to false', function() {
       var result = _parseArgv(['--no-connect']);
-      expect(result.connect).to.equal(false);
-    });
-
-    it('can be set to false via alias', function() {
-      var result = _parseArgv(['--no-ct']);
       expect(result.connect).to.equal(false);
     });
   });
@@ -182,58 +149,25 @@ describe('parseArgv()', function() {
     });
 
     it('can be set to 42', function() {
-      var result = _parseArgv(['--connectRetries', '42']);
+      var result = _parseArgv(['--connect-retries', '42']);
+      expect(result.connectRetries).to.equal(42);
+    });
+
+    it('can be set to 42 via alias', function() {
+      var result = _parseArgv(['-r', '42']);
       expect(result.connectRetries).to.equal(42);
     });
   });
 
   describe('attach', function() {
-    it('defaults to false', function() {
+    it('defaults to undefined', function() {
       var result = _parseArgv([]);
-      expect(result.attach).to.equal(false);
+      expect(result.attach).to.equal(undefined);
     });
 
     it('can be set to true', function() {
       var result = _parseArgv(['--attach']);
       expect(result.attach).to.equal(true);
     });
-
-    it('can be set to true via alias', function() {
-      var result = _parseArgv(['--at']);
-      expect(result.attach).to.equal(true);
-    });
-
-    it('can be explicitly set to false', function() {
-      var result = _parseArgv(['--no-attach']);
-      expect(result.attach).to.equal(false);
-    });
-
-    it('can be explicitly set to false via alias', function() {
-      var result = _parseArgv(['--no-at']);
-      expect(result.attach).to.equal(false);
-    });
   });
 });
-
-function mockEnv(key, value, cb) {
-  var hasOldValue, oldValue;
-  try {
-    hasOldValue = key in process.env;
-    oldValue = process.env[key];
-
-    if (value !== undefined) {
-      process.env[key] = value;
-    } else {
-      delete process.env[key];
-    }
-
-    cb();
-
-  } finally {
-    if (hasOldValue) {
-      process.env[key] = oldValue;
-    } else {
-      delete process.env[key];
-    }
-  }
-}

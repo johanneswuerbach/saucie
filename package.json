@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "bluebird": "^3.1.1",
-    "optimist": "^0.6.0",
+    "commander": "^2.9.0",
     "request": "^2.51.0",
     "sauce-connect-launcher": "^1.1.0",
     "wd": "^1.0.0"

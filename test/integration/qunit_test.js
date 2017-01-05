@@ -54,8 +54,8 @@ describe('QUnit - Integration', function() {
     launcher({
       url: url,
       connectRetries: 2,
-      platformNameSL: 'Windows',
-      platformVersionSL: '10'
+      platform: 'Windows',
+      platformVersion: '10'
     }, function(err, result) {
       if (err) {
         return done(err);
@@ -76,11 +76,11 @@ describe('QUnit - Integration', function() {
     launcher({
       url: url,
       connectRetries: 2,
-      browserNameSL: 'Browser',
-      deviceNameSL: 'Android Emulator',
-      deviceOrientationSL: 'portrait',
-      platformNameSL: 'Android',
-      platformVersionSL: '5.1'
+      browser: 'Browser',
+      deviceName: 'Android Emulator',
+      deviceOrientation: 'portrait',
+      platform: 'Android',
+      platformVersion: '5.1'
     }, function(err, result) {
       if (err) {
         return done(err);
@@ -114,7 +114,7 @@ describe('QUnit - Integration', function() {
       return launcher({
         url: url,
         connect: false,
-        tunnelIdentifierSL: 'Manual-' + process.env.TRAVIS_JOB_NUMBER
+        tunnelIdentifier: 'Manual-' + process.env.TRAVIS_JOB_NUMBER
       }).then(function (result) {
         expect(result).to.have.deep.property('body.passed', true, 'Marked tests as passed');
         expect(result).to.have.deep.property('body.custom-data.qunit');
