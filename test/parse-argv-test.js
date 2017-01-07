@@ -170,4 +170,26 @@ describe('parseArgv()', function() {
       expect(result.attach).to.equal(true);
     });
   });
+
+  describe('username', function() {
+    it('defaults to undefined', function() {
+      var result = _parseArgv([]);
+      expect(result.username).to.equal(undefined);
+    });
+
+    it('can be set to test', function() {
+      var result = _parseArgv(['--username', 'test']);
+      expect(result.username).to.equal('test');
+    });
+
+    it('can be set to test using its alias', function() {
+      var result = _parseArgv(['-U', 'test']);
+      expect(result.username).to.equal('test');
+    });
+
+    it('is not aliased to -u', function() {
+      var result = _parseArgv(['-u', 'test']);
+      expect(result.username).to.equal(undefined);
+    });
+  });
 });
