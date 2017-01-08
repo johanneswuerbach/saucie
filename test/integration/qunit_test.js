@@ -34,7 +34,7 @@ describe('QUnit - Integration', function() {
   });
 
   it('runs qunit tests and reports the result', function(done) {
-    launcher({url: url, connectRetries: 2}, function(err, result) {
+    launcher({url: url}, function(err, result) {
       if (err) {
         return done(err);
       }
@@ -53,7 +53,6 @@ describe('QUnit - Integration', function() {
   it('supports desktop browsers (selenium)', function(done) {
     launcher({
       url: url,
-      connectRetries: 2,
       platform: 'Windows',
       platformVersion: '10'
     }, function(err, result) {
@@ -75,7 +74,6 @@ describe('QUnit - Integration', function() {
   it('supports mobile browsers (appium)', function(done) {
     launcher({
       url: url,
-      connectRetries: 2,
       browser: 'Browser',
       deviceName: 'Android Emulator',
       deviceOrientation: 'portrait',
@@ -105,8 +103,7 @@ describe('QUnit - Integration', function() {
         pidfile: pidFile,
         logger: console.log,
         verbose: true,
-        tunnelIdentifier: 'Manual-' + process.env.TRAVIS_JOB_NUMBER,
-        connectRetries: 2
+        tunnelIdentifier: 'Manual-' + process.env.TRAVIS_JOB_NUMBER
       }).disposer(function() {
         return disconnect(pidFile);
       });
@@ -123,7 +120,7 @@ describe('QUnit - Integration', function() {
   });
 
   it('fails when specifing a small timeout', function() {
-    return launcher({url: url, timeout: 1, connectRetries: 2}).catch(function (err) {
+    return launcher({ url: url, timeout: 1 }).catch(function (err) {
       expect(err).to.be.instanceof(Error);
       expect(err.message).to.eq('Timeout: Element not there');
     });
