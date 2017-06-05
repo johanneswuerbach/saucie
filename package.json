@@ -33,7 +33,7 @@
     "wd": "^1.0.0"
   },
   "devDependencies": {
-    "chai": "^3.2.0",
+    "chai": "^4.0.2",
     "dirty-chai": "^1.2.2",
     "mocha": "^3.0.0"
   }
