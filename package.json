@@ -29,8 +29,8 @@
     "bluebird": "^3.1.1",
     "commander": "^2.9.0",
     "request": "^2.51.0",
-    "sauce-connect-launcher": "^1.2.0",
-    "wd": "^1.0.0"
+    "sauce-connect-launcher": "^1.2.2",
+    "wd": "^1.2.0"
   },
   "devDependencies": {
     "chai": "^3.2.0",
