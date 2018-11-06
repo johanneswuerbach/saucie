@@ -26,7 +26,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "bluebird": "^3.1.1",
+    "bluebird": "3.5.2",
     "commander": "^2.9.0",
     "request": "^2.81.0",
     "sauce-connect-launcher": "^1.2.2",
