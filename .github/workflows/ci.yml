@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [8, 10]
+      max-parallel: 1
+      fail-fast: true
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+      - run: npm test
+        env:
+          SAUCE_USERNAME: ember-cli-sauce-ci
+          SAUCE_ACCESS_KEY: be8498f4-3dc5-4256-94c6-40dd9247f2e6
+          VERBOSE_TESTS: '1'
