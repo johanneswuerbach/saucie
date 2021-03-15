@@ -73,9 +73,9 @@ describe('parseArgv()', function() {
   });
 
   describe('tunnelIdentifier', function() {
-    it('defaults to $TRAVIS_JOB_NUMBER', function() {
+    it('defaults to $GITHUB_RUN_ID', function() {
       var result = _parseArgv([]);
-      expect(result.tunnelIdentifier).to.equal(process.env.TRAVIS_JOB_NUMBER);
+      expect(result.tunnelIdentifier).to.equal(process.env.GITHUB_RUN_ID);
     });
 
     it('can be set to "foobar"', function() {
@@ -90,9 +90,9 @@ describe('parseArgv()', function() {
   });
 
   describe('build', function() {
-    it('defaults to $TRAVIS_BUILD_NUMBER', function() {
+    it('defaults to $GITHUB_RUN_NUMBER', function() {
       var result = _parseArgv([]);
-      expect(result.build).to.equal(process.env.TRAVIS_BUILD_NUMBER);
+      expect(result.build).to.equal(process.env.GITHUB_RUN_NUMBER);
     });
 
     it('can be set to "foobar"', function() {

@@ -103,7 +103,7 @@ describe('QUnit - Integration', function() {
         pidfile: pidFile,
         logger: console.log,
         verbose: true,
-        tunnelIdentifier: 'Manual-' + process.env.TRAVIS_JOB_NUMBER
+        tunnelIdentifier: 'Manual-' + process.env.GITHUB_RUN_ID
       }).disposer(function() {
         return disconnect(pidFile);
       });
@@ -111,7 +111,7 @@ describe('QUnit - Integration', function() {
       return launcher({
         url: url,
         connect: false,
-        tunnelIdentifier: 'Manual-' + process.env.TRAVIS_JOB_NUMBER
+        tunnelIdentifier: 'Manual-' + process.env.GITHUB_RUN_ID
       }).then(function (result) {
         expect(result).to.have.deep.property('body.passed', true, 'Marked tests as passed');
         expect(result).to.have.deep.property('body.custom-data.qunit');
