@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [8, 10]
+        node: [10, 12]
       max-parallel: 1
       fail-fast: true
 
@@ -23,6 +23,9 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: npm ci
+      - uses: shogo82148/actions-mutex@v1
+        with:
+          key: sauce-tunnel-limit
       - run: npm test
         env:
           SAUCE_USERNAME: ember-cli-sauce-ci
