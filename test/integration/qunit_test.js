@@ -1,12 +1,10 @@
 var chai = require('chai');
-var Bluebird = require('bluebird');
 
 chai.use(require('dirty-chai'));
 var expect = require('chai').expect;
 
 var launcher = require('../../lib/index');
 var connect = launcher.connect;
-var disconnect = launcher.disconnect;
 var serveQUnit = require('../utils').serveQUnit;
 
 var PORT = 7000;
@@ -74,11 +72,11 @@ describe('QUnit - Integration', function() {
   it('supports mobile browsers (appium)', function(done) {
     launcher({
       url: url,
-      browser: 'Browser',
-      deviceName: 'Android Emulator',
+      browser: 'Chrome',
+      deviceName: 'Android GoogleAPI Emulator',
       deviceOrientation: 'portrait',
       platform: 'Android',
-      platformVersion: '5.1'
+      platformVersion: '12.0'
     }, function(err, result) {
       if (err) {
         return done(err);
@@ -96,27 +94,29 @@ describe('QUnit - Integration', function() {
   });
 
   it('works when controlling the tunnel manually', function() {
-    var pidFile = 'sc.pid';
+    var tunnelId = 'Manual-' + (process.env.TRAVIS_JOB_NUMBER || 'saucie');
+    var tunnel;
 
-    return Bluebird.using(function () {
-      return connect({
-        pidfile: pidFile,
-        logger: console.log,
-        verbose: true,
-        tunnelIdentifier: 'Manual-' + process.env.TRAVIS_JOB_NUMBER
-      }).disposer(function() {
-        return disconnect(pidFile);
-      });
-    }(), function () {
+    return connect({
+      username: process.env.SAUCE_USERNAME,
+      accessKey: process.env.SAUCE_ACCESS_KEY,
+      region: 'us-west',
+      logger: console.log,
+      tunnelIdentifier: tunnelId
+    }).then(function(sc) {
+      tunnel = sc;
       return launcher({
         url: url,
         connect: false,
-        tunnelIdentifier: 'Manual-' + process.env.TRAVIS_JOB_NUMBER
+        tunnelIdentifier: tunnelId
       }).then(function (result) {
         expect(result).to.have.deep.property('body.passed', true, 'Marked tests as passed');
         expect(result).to.have.deep.property('body.custom-data.qunit');
       });
-    });
+    }).then(
+      function()    { return new Promise(function(res, rej) { tunnel.close(function(e) { e ? rej(e) : res(); }); }); },
+      function(err) { return new Promise(function(res, rej) { tunnel.close(function()  { rej(err); }); }); }
+    );
   });
 
   it('fails when specifing a small timeout', function() {
