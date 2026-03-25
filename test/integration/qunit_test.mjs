@@ -1,11 +1,8 @@
-var chai = require('chai');
+import { expect } from 'chai';
+import launcher from '../../lib/index.js';
+import { serveQUnit } from '../utils.mjs';
 
-chai.use(require('dirty-chai'));
-var expect = require('chai').expect;
-
-var launcher = require('../../lib/index');
 var connect = launcher.connect;
-var serveQUnit = require('../utils').serveQUnit;
 
 var PORT = 7000;
 var url = 'http://localhost:' + PORT;
@@ -37,8 +34,8 @@ describe('QUnit - Integration', function() {
         return done(err);
       }
 
-      expect(result).to.have.deep.property('body.passed', true, 'Marked tests as passed');
-      expect(result).to.have.deep.property('body.custom-data.qunit');
+      expect(result).to.have.nested.property('body.passed', true, 'Marked tests as passed');
+      expect(result).to.have.nested.property('body.custom-data.qunit');
 
       var qunitResult = result.body['custom-data'].qunit;
       expect(qunitResult.failed).to.eq(0);
@@ -58,8 +55,8 @@ describe('QUnit - Integration', function() {
         return done(err);
       }
 
-      expect(result).to.have.deep.property('body.passed', true, 'Marked tests as passed');
-      expect(result).to.have.deep.property('body.custom-data.qunit');
+      expect(result).to.have.nested.property('body.passed', true, 'Marked tests as passed');
+      expect(result).to.have.nested.property('body.custom-data.qunit');
 
       var qunitResult = result.body['custom-data'].qunit;
       expect(qunitResult.failed).to.eq(0);
@@ -82,8 +79,8 @@ describe('QUnit - Integration', function() {
         return done(err);
       }
 
-      expect(result).to.have.deep.property('body.passed', true, 'Marked tests as passed');
-      expect(result).to.have.deep.property('body.custom-data.qunit');
+      expect(result).to.have.nested.property('body.passed', true, 'Marked tests as passed');
+      expect(result).to.have.nested.property('body.custom-data.qunit');
 
       var qunitResult = result.body['custom-data'].qunit;
       expect(qunitResult.failed).to.eq(0);
@@ -110,8 +107,8 @@ describe('QUnit - Integration', function() {
         connect: false,
         tunnelIdentifier: tunnelId
       }).then(function (result) {
-        expect(result).to.have.deep.property('body.passed', true, 'Marked tests as passed');
-        expect(result).to.have.deep.property('body.custom-data.qunit');
+        expect(result).to.have.nested.property('body.passed', true, 'Marked tests as passed');
+        expect(result).to.have.nested.property('body.custom-data.qunit');
       });
     }).then(
       function()    { return new Promise(function(res, rej) { tunnel.close(function(e) { e ? rej(e) : res(); }); }); },

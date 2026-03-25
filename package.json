@@ -23,7 +23,7 @@
     "url": "git+https://github.com/johanneswuerbach/saucie.git"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha 'test/**/*.mjs'"
   },
   "dependencies": {
     "commander": "^14.0.3",
@@ -31,8 +31,7 @@
     "@cypress/request": "^3.0.10"
   },
   "devDependencies": {
-    "chai": "^3.2.0",
-    "dirty-chai": "^2.0.1",
+    "chai": "^6.2.2",
     "mocha": "^11.7.5"
   }
 }
