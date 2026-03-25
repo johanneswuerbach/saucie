@@ -1,8 +1,11 @@
-var http = require('http');
-var fs = require('fs');
-var path = require('path');
+import http from 'node:http';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-module.exports.serveQUnit = function(port, callback) {
+var __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export function serveQUnit(port, callback) {
   var server = http.createServer(function (request, response) {
     switch (request.url) {
       case '/':
@@ -32,4 +35,4 @@ module.exports.serveQUnit = function(port, callback) {
   server.listen(port, function() {
     callback(null, server);
   });
-};
+}

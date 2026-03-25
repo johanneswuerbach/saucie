@@ -1,6 +1,5 @@
-var expect = require('chai').expect;
-
-var parseArgv = require('..').parseArgv;
+import { expect } from 'chai';
+import { parseArgv } from '../lib/index.js';
 
 function _parseArgv(args) {
   args.unshift('lib/bin.js');
