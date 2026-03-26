@@ -91,7 +91,7 @@ describe('QUnit - Integration', function() {
   });
 
   it('works when controlling the tunnel manually', function() {
-    var tunnelId = 'Manual-' + (process.env.TRAVIS_JOB_NUMBER || 'saucie');
+    var tunnelId = 'Manual-' + (process.env.GITHUB_RUN_ID || 'saucie');
     var tunnel;
 
     return connect({
