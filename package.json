@@ -28,7 +28,7 @@
   "dependencies": {
     "commander": "^14.0.3",
     "cross-spawn": "^7.0.6",
-    "@cypress/request": "^3.0.10"
+    "@cypress/request": "^4.0.0"
   },
   "devDependencies": {
     "chai": "^6.2.2",
