@@ -72,9 +72,9 @@ describe('parseArgv()', function() {
   });
 
   describe('tunnelIdentifier', function() {
-    it('defaults to $GITHUB_RUN_ID', function() {
+    it('defaults to $GITHUB_RUN_ID or saucie', function() {
       var result = _parseArgv([]);
-      expect(result.tunnelIdentifier).to.equal(process.env.GITHUB_RUN_ID);
+      expect(result.tunnelIdentifier).to.equal(process.env.GITHUB_RUN_ID || 'saucie');
     });
 
     it('can be set to "foobar"', function() {
